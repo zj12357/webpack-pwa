@@ -67,12 +67,13 @@ module.exports = {
   plugins: [
     // 开发环境和生产环境二者均需要的插件
     new HtmlWebpackPlugin({
-      title: 'webpack4 实战',
+      title: 'PWA-demo',
       filename: 'index.html',
       template: path.resolve(__dirname, '..', 'index.html'),
       minify: {
         collapseWhitespace: true
-      }
+      },
+      favicon: path.resolve(__dirname,'../src/assets/images','favicon.ico')
     }),
     new webpack.ProvidePlugin({ $: 'jquery' }),
     new CleanWebpackPlugin()
