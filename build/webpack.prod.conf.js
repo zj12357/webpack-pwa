@@ -3,7 +3,8 @@ const commonConfig = require('./webpack.base.conf.js')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 将 css 单独打包成文件
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin') // 压缩 css
-const WorkboxPlugin = require('workbox-webpack-plugin') // 引入 PWA 插件
+
+const WorkboxPlugin = require('workbox-webpack-plugin') // PWA 插件
 
 const prodConfig = {
   mode: 'production',
@@ -60,10 +61,11 @@ const prodConfig = {
       cssProcessorOptions: { safe: true, discardComments: { removeAll: true } }, //传递给 cssProcessor 的选项，默认为{}
       canPrint: true //一个布尔值，指示插件是否可以将消息打印到控制台，默认为 true
     }),
+    // 配置 PWA
     new WorkboxPlugin.GenerateSW({
-			clientsClaim: true,
-			skipWaiting: true
-		  })
+      clientsClaim: true,
+      skipWaiting: true
+    })
   ]
 }
 

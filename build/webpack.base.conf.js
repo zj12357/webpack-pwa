@@ -1,43 +1,7 @@
 const path = require('path')
-const fs = require('fs')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-
-// 存放公共插件
-const plugins = [
-  // 开发环境和生产环境二者均需要的插件
-  new HtmlWebpackPlugin({
-    title: 'webpack4 实战',
-    filename: 'index.html',
-    template: path.resolve(__dirname, '..', 'index.html'),
-    minify: {
-      collapseWhitespace: true
-    }
-  }),
-  new CleanWebpackPlugin(),
-  new webpack.ProvidePlugin({ $: 'jquery' })
-]
-
-// 自动引入 dll 中的文件
-const files = fs.readdirSync(path.resolve(__dirname, '../dll'))
-files.forEach(file => {
-  if (/.*\.dll.js/.test(file)) {
-    plugins.push(
-      new AddAssetHtmlWebpackPlugin({
-        filepath: path.resolve(__dirname, '../dll', file)
-      })
-    )
-  }
-  if (/.*\.manifest.json/.test(file)) {
-    plugins.push(
-      new webpack.DllReferencePlugin({
-        manifest: path.resolve(__dirname, '../dll', file)
-      })
-    )
-  }
-})
 
 module.exports = {
   entry: {
@@ -100,6 +64,18 @@ module.exports = {
       }
     ]
   },
-  plugins,
+  plugins: [
+    // 开发环境和生产环境二者均需要的插件
+    new HtmlWebpackPlugin({
+      title: 'webpack4 实战',
+      filename: 'index.html',
+      template: path.resolve(__dirname, '..', 'index.html'),
+      minify: {
+        collapseWhitespace: true
+      }
+    }),
+    new webpack.ProvidePlugin({ $: 'jquery' }),
+    new CleanWebpackPlugin()
+  ],
   performance: false
 }
