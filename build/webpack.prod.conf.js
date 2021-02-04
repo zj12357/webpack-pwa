@@ -73,19 +73,24 @@ const prodConfig = {
       description: 'My awesome Progressive Web App!',
       background_color: '#ffffff',
       crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+      ios:true,
       icons: [
         {
           src: path.resolve('./src/assets/images/256.png'),
-          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+          destination: path.join('icons', 'ios'),
+          ios: true
         },
         {
           src: path.resolve('./src/assets/images/256.png'),
-          size: '1024x1024' // you can also use the specifications pattern
+          size: '1024x1024' ,// you can also use the specifications pattern
+          destination: path.join('icons', 'ios'),
+          ios: 'startup'
         },
         {
           src: path.resolve('./src/assets/images/256.png'),
-          size: '1024x1024',
-          purpose: 'maskable'
+          sizes: [36, 48, 72, 96, 144, 192, 512],
+          destination: path.join('icons', 'android')
         }
       ]
     })

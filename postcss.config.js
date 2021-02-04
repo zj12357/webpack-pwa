@@ -1,6 +1,9 @@
 module.exports = {
   plugins: [
     require('autoprefixer'),
-    require("postcss-plugin-px2rem")({'remUnit': 75,'baseDpr':2})
+    require("postcss-plugin-px2rem")({
+      rootValue: 16,
+      unitPrecision: 4
+    })
   ]
 }
