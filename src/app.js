@@ -22,11 +22,16 @@ $(
     }
 
     let dfdPrompt = null;
-    let btnInstall = $("#btnInstall");
+    let btnInstall = $(".box");
+    let install = $('#btnInstall');
     $(function () {
-      if(dfdPrompt==null){
+      
+      window.addEventListener('appinstalled', (e) => {
+        console.log('已安装',e);
         btnInstall.hide();
-      }
+        dfdPrompt = null;
+      });
+
       window.addEventListener("beforeinstallprompt", function (e) {
         // 存储事件
         dfdPrompt = e;
@@ -37,7 +42,7 @@ $(
         return false;
       });
 
-      btnInstall.on("click", function () {
+      install.on("click", function () {
         console.log('安装', dfdPrompt);
         if (dfdPrompt == null) {
           return;

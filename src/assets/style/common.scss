@@ -7,7 +7,7 @@
     text-align: center;
   }
   .box{
-    // display: none;
+    display: none;
     #btnInstall{
       width: 75px;
       height: 40px;
@@ -15,7 +15,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      color: #ffffff;
     }
   }
+
 }
 
