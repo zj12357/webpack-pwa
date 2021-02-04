@@ -24,6 +24,9 @@ $(
     let dfdPrompt = null;
     let btnInstall = $("#btnInstall");
     $(function () {
+      if(dfdPrompt==null){
+        btnInstall.hide();
+      }
       window.addEventListener("beforeinstallprompt", function (e) {
         // 存储事件
         dfdPrompt = e;
